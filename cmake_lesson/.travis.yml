@@ -1,0 +1,13 @@
+language: cpp
+before_script:
+  - sudo apt-get install libboost-test-dev -y
+script:
+- cmake .
+- cmake --build .
+- cmake --build . --target test_version
+- cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -T cmakeProject-0.0.$TRAVIS_BUILD_NUMBER.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/cmakeProject/$TRAVIS_BUILD_NUMBER/cmakeProject-0.0.$TRAVIS_BUILD_NUMBER.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
