@@ -19,9 +19,9 @@ add_executable(cmakeExec main.cpp)
 add_library(version lib.cpp)
 
 #tests
-#add_executable (test_version test_version.cpp)
+add_executable (test_version_exec test_version.cpp)
 enable_testing()
-add_test(test_version test_version)
+add_test(test_version test_version_exec)
 
 #compile properties for all targets 
 set_target_properties(cmakeExec version  PROPERTIES
@@ -30,7 +30,7 @@ set_target_properties(cmakeExec version  PROPERTIES
  COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
 
 #compile properties for tests only
-set_target_properties(test_version PROPERTIES
+set_target_properties(test_version_exec PROPERTIES
  COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
  INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
@@ -39,7 +39,7 @@ set_target_properties(test_version PROPERTIES
 target_link_libraries( cmakeExec version)
 
 #linking tests with dummy lib and boost
-target_link_libraries(test_version ${Boost_LIBRARIES} version)
+target_link_libraries(test_version_exec ${Boost_LIBRARIES} version)
 
 
 
