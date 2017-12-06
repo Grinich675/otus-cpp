@@ -5,7 +5,7 @@ before_script:
 script:
 - cmake .
 - cmake --build .
-- cmake --build . --target test_version
+- cmake --build . --target test_version_exec
 - cmake --build . --target package
 deploy:
   provider: script
