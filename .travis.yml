@@ -1,0 +1,20 @@
+sudo: true
+language: cpp
+compiler: clang
+before_script:
+- wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
+- tar xf boost_1_66_0.tar.gz
+- cd boost_1_66_0
+- ./bootstrap.sh --with-libraries=test
+- sudo ./b2 install
+- cd ../ip_filter  
+script:
+- cmake .
+- cmake --build .
+- cmake --build . --target test
+- cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -T ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/ip_filter/$TRAVIS_BUILD_NUMBER/ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
