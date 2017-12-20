@@ -2,7 +2,42 @@
 
 #include "filter_utils.h"
 
+#include <iostream>
+
  ip_pool_t ip_pool;
+
+static inline std::ostream& operator<<(std::ostream& os, const ip_type& ip)
+{
+
+	for(auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part)
+            {
+        		if (ip_part != ip.cbegin())
+                {
+        			std::cout << ".";
+                }
+                std::cout << *ip_part;
+        	}
+    return os;
+}
+
+
+namespace boost { 
+	namespace test_tools 
+	{
+		namespace tt_detail
+		{
+			template<>           
+			struct print_log_value<ip_type> 
+			{
+				void operator()( std::ostream& os, const ip_type& ts)
+				{
+				    ::operator<<(os,ts);
+				}
+			};  
+		}                                                        
+	}
+}
+
 
 // initialization function:
 bool init_unit_test()
@@ -10,7 +45,7 @@ bool init_unit_test()
 	std::string filename = "test_data.tsv";
 	std::fstream s(filename,   s.in );
 
-	assert( (!s.is_open()) );
+	//assert( (!s.is_open()) );
 
 	for(std::string line; std::getline(s, line);)
 	{
@@ -42,16 +77,16 @@ BOOST_AUTO_TEST_SUITE(test_split_suite)
 BOOST_AUTO_TEST_CASE(test_split_empty)
 {
 	auto res = split(std::string(""),'.');
-  	BOOST_CHECK(res.size()==1);
-  	BOOST_CHECK(res.at(0)== std::string("") );
+  	BOOST_TEST(res.size()==1);
+  	BOOST_TEST(res.at(0)== std::string("") );
 }
 
 // ("11", '.') -> ["11"]
 BOOST_AUTO_TEST_CASE(test_split_no_sep)
 {
 	auto res = split(std::string("11"),'.');
-  	BOOST_CHECK(res.size()==1);
-  	BOOST_CHECK(res.at(0)== std::string("11") );
+  	BOOST_TEST(res.size()==1);
+  	BOOST_TEST(res.at(0)== std::string("11") );
 }
 
 // ("..", '.') -> ["", "", ""]
@@ -61,7 +96,7 @@ BOOST_AUTO_TEST_CASE(test_split_only_seps)
 
 	auto res = split(std::string(".."),'.');
 
-  	BOOST_CHECK(res==reference_value ,tt::per_element() );
+  	BOOST_TEST(res==reference_value ,tt::per_element() );
 }
 
 // ("11.", '.') -> ["11", ""]
@@ -71,7 +106,7 @@ BOOST_AUTO_TEST_CASE(test_split_no_chars_after_seps)
 
 	auto res = split(std::string("11."),'.');
 
-  	BOOST_CHECK(res==reference_value ,tt::per_element() );
+  	BOOST_TEST(res==reference_value ,tt::per_element() );
 }
 
 // (".11", '.') -> ["", "11"]
@@ -81,7 +116,7 @@ BOOST_AUTO_TEST_CASE(test_split_no_chars_before_seps)
 
 	auto res = split(std::string(".11"),'.');
 
-  	BOOST_CHECK(res==reference_value ,tt::per_element() );
+  	BOOST_TEST(res==reference_value ,tt::per_element() );
 }
 
 // ("11.22", '.') -> ["11", "22"]
@@ -91,7 +126,7 @@ BOOST_AUTO_TEST_CASE(test_split_regular)
 
 	auto res = split(std::string("11.22"),'.');
 
-  	BOOST_CHECK(res==reference_value ,tt::per_element() );
+  	BOOST_TEST(res==reference_value ,tt::per_element() );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
@@ -117,7 +152,7 @@ BOOST_AUTO_TEST_CASE(filter_by_first_byte)
     ip_pool_t res(seq_beg_it,seq_end_it) ;
 
 
-  	BOOST_CHECK(res==reference_value ,tt::per_element() );
+  	BOOST_TEST(res==reference_value ,tt::per_element() );
 }
 
 
@@ -136,7 +171,7 @@ BOOST_AUTO_TEST_CASE(filter_by_first_and_second_bytes)
     ip_pool_t res(seq_beg_it,seq_end_it) ;
 
 
-  	BOOST_CHECK(res==reference_value ,tt::per_element() );
+  	BOOST_TEST(res==reference_value ,tt::per_element() );
 }
 
 
