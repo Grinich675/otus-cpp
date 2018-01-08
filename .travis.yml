@@ -1,6 +1,6 @@
 language: cpp
 before_script:
-- cd ../allocator 
+- cd allocator 
 script:
 - cmake .
 - cmake --build .
