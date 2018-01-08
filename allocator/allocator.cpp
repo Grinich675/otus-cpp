@@ -37,7 +37,7 @@ int main()
 	fill_map<decltype(custom_map),10>(custom_map);
 
 	for(auto node:custom_map)
-		std::cout<<*node;
+		std::cout<<node;
 
 	custom_list<int,custom_allocator<int,10>> my_list;
 
@@ -46,7 +46,7 @@ int main()
 
 	for(auto it:my_list)
 	{
-		std::cout<<*it<<std::endl;
+		std::cout<<it<<std::endl;
 	}
 
 
