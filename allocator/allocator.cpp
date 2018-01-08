@@ -36,17 +36,17 @@ int main()
 	auto custom_map =std::map<int,int,std::less<int>,custom_allocator<std::pair<const int,int>,10>>();
 	fill_map<decltype(custom_map),10>(custom_map);
 
-	for(node:custom_map)
-		std::cout<<node;
+	for(auto node:custom_map)
+		std::cout<<*node;
 
-	custom_list<int,custom_allocator<int,10>> a;
+	custom_list<int,custom_allocator<int,10>> my_list;
 
 	for(int i=0;i<10;++i)
-		a.push_back(i);
+		my_list.push_back(i);
 
-	for( it:a)
+	for(auto it:my_list)
 	{
-		std::cout<<it<<std::endl;
+		std::cout<<*it<<std::endl;
 	}
 
 
