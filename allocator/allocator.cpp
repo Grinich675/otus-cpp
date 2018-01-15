@@ -36,7 +36,7 @@ int main()
 	auto custom_map =std::map<int,int,std::less<int>,custom_allocator<std::pair<const int,int>,5>>();
 	fill_map<decltype(custom_map),10>(custom_map);
 
-	for(node:custom_map)
+	for(auto node:custom_map)
 		std::cout<<node;
 
 	custom_list<int> stl_alloc_list;
@@ -50,7 +50,7 @@ int main()
 		custom_alloc_list.push_back(i);
 
 
-	for( it:custom_alloc_list)
+	for(auto it:custom_alloc_list)
 	{
 		std::cout<<it<<std::endl;
 	}
