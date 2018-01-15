@@ -44,4 +44,3 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}" )
 set(CPACK_PACKAGE_CONTACT grinich001@yandex.ru)
 
 include(CPack)
-

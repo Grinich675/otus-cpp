@@ -33,18 +33,24 @@ int main()
 	auto regular_map = std::map<int,int>();
 	fill_map<decltype(regular_map),10>(regular_map);
 
-	auto custom_map =std::map<int,int,std::less<int>,custom_allocator<std::pair<const int,int>,10>>();
+	auto custom_map =std::map<int,int,std::less<int>,custom_allocator<std::pair<const int,int>,5>>();
 	fill_map<decltype(custom_map),10>(custom_map);
 
-	for(auto node:custom_map)
+	for(node:custom_map)
 		std::cout<<node;
 
-	custom_list<int,custom_allocator<int,10>> my_list;
+	custom_list<int> stl_alloc_list;
 
 	for(int i=0;i<10;++i)
-		my_list.push_back(i);
+		stl_alloc_list.push_back(i);
 
-	for(auto it:my_list)
+	custom_list<int,custom_allocator<int,10>> custom_alloc_list;
+
+	for(int i=0;i<10;++i)
+		custom_alloc_list.push_back(i);
+
+
+	for( it:custom_alloc_list)
 	{
 		std::cout<<it<<std::endl;
 	}

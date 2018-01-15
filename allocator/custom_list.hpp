@@ -3,8 +3,7 @@
 #include <memory>
 
 template<typename _Tp>
-struct _list_node
-    {
+struct _list_node{
 	  _Tp storage;
       _list_node* next;
       _list_node* prev;
@@ -14,12 +13,11 @@ struct _list_node
 
       _list_node(_Tp val,_list_node* _prev, _list_node* _next):storage(val),next(_next),prev(_prev)
       {}
-    };
+ };
 
 
 template<typename _Tp>
-struct _custom_list_iterator
-{
+struct _custom_list_iterator{
 	 typedef _custom_list_iterator<_Tp>         _Self;
      typedef _list_node<_Tp>                    _Node;
      typedef std::bidirectional_iterator_tag    iterator_category;
@@ -84,8 +82,7 @@ struct _custom_list_iterator
 
 
 template<typename _Tp, typename _Alloc = std::allocator<_Tp> >
-class custom_list
-	{
+class custom_list{
 
     using _Node = _list_node<_Tp>;
 
@@ -107,31 +104,26 @@ class custom_list
 
 	custom_list():_a(),head(nullptr),tail(nullptr)
 	{
-		auto fake_node=_a.allocate(1);
-		tail=fake_node;
-		tail->prev = nullptr;
-		tail->next= nullptr;
-		head=tail;
-
 	}
 
 	void push_back(const _Tp& value)
 	{
 		auto new_node=_a.allocate(1);
 
-		_a.construct(new_node,value,tail->prev,tail);
+		_a.construct(new_node,value,tail,nullptr);
+
+		//first node case
+		if( head == nullptr)
+		{
+			head=new_node;
+		}
+
+		tail=new_node;
 
 		if(tail->prev!= nullptr)
 		{
 			tail->prev->next=new_node;
 		}
-		else if( head == tail)
-		{
-			head=new_node;
-		}
-
-		tail->prev=new_node;
-
 
 	}
 
@@ -161,10 +153,19 @@ class custom_list
 		return iterator(this->head);
 	}
 
-	//return iterator to space after last element
+
 	iterator end() noexcept
 	{
-		return iterator(this->tail);
+
+		/*
+		 *if(this->tail!= nullptr)
+		 *	return iterator(this->tail->next);
+		 *return iterator(this->tail);
+		 *
+		 * anyway iterator(nullptr) means the end of list;
+		 */
+
+		return iterator(nullptr);
 	}
 
 };
