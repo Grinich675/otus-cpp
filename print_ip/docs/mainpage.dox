@@ -1,0 +1,7 @@
+/**
+*\mainpage IP printer
+*\section intro_sec Introduction
+* This project is part of OTUS C++ course. 
+* Contains example of metaprogramming used for printing out IP addresses.
+*
+*/
