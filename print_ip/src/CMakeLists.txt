@@ -30,13 +30,13 @@ if(BUILD_DOCUMENTATION)
     	set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 
 	configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-	message("Doxygen build started")
-	add_custom_target(doc ALL
+
+	add_custom_target(doc
 			COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
 			WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 			COMMENT "Generating documentation woth Doxygen"
 			VERBATIM)
-
+	message("Doxygen configurated")
 endif()
 
 
