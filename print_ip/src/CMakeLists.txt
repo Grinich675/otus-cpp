@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.2)
 
-project (ip_print VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project (print_ip VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Doxygen)
 
@@ -11,11 +11,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 #executable
-add_executable(ip_print print_ip.cpp metaprinter.hpp)
+add_executable(print_ip print_ip.cpp metaprinter.hpp)
 
 #compile properties for all targets 
 set_target_properties(
-ip_print
+print_ip
   PROPERTIES
  CXX_STANDART 14
  CXX_STANDART_REQUIRED ON
@@ -42,7 +42,7 @@ endif()
 
 
 #install Targets
-install(TARGETS ip_print RUNTIME DESTINATION bin)
+install(TARGETS print_ip RUNTIME DESTINATION bin)
 
 #package generation
 set(CPACK_GENERATOR DEB)
