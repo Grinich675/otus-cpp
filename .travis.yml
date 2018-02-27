@@ -18,7 +18,7 @@ deploy:
   script:
   - curl -T VeGraf-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/VeGraf/$TRAVIS_BUILD_NUMBER/VeGraf-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
   provider: pages
-  local-dir: doc_doxygen/html/
+  local-dir: VeGraf/doc_doxygen/html/
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
