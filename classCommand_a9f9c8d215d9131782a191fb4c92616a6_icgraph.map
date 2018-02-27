@@ -1,0 +1,10 @@
+<map id="Command::apply" name="Command::apply">
+<area shape="rect" id="node2" href="$classCommandHistory.html#a32295d8bf41c096bd1b00404a6f8404a" title="Function for adding object to bounded document. " alt="" coords="192,5,395,32"/>
+<area shape="rect" id="node4" href="$classCommandHistory.html#a2bbf4713ef6dfe4104ff532678fcafb8" title="Function for removing object from bounded document by its coordinates. " alt="" coords="179,56,408,83"/>
+<area shape="rect" id="node6" href="$classCommandHistory.html#a3aa04d5efb838c2d59210bc79519ad3b" title="Function for for searching object in bounded document. " alt="" coords="185,107,402,133"/>
+<area shape="rect" id="node8" href="$classCommandHistory.html#af8251e85665a09e5d8d5cfd88a989277" title="Function for editing given object in bounded document. " alt="" coords="177,157,410,184"/>
+<area shape="rect" id="node3" href="$classVeGrafController.html#a487e81eba8f7db4ec4d0c59e1ed1b876" title="Function for adding object to bounded document. " alt="" coords="470,5,621,32"/>
+<area shape="rect" id="node5" href="$classVeGrafController.html#a8eb10d3c31d93e8553c15733913fd2ab" title="Function for removing object from bounded document by its coordinates. " alt="" coords="463,56,628,83"/>
+<area shape="rect" id="node7" href="$classVeGrafController.html#a1265a2ae56693d326e7f2c1ec69c9ad1" title="Function for for searching object in bounded document. " alt="" coords="463,107,627,133"/>
+<area shape="rect" id="node9" href="$classVeGrafController.html#a9f048afd98330c11e5ee933fc00a8ffc" title="Function for editing given object in bounded document. " alt="" coords="459,157,631,184"/>
+</map>

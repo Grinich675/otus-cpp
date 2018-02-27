@@ -1,0 +1,6 @@
+<map id="Command" name="Command">
+<area shape="rect" id="node2" href="$classAddCommand.html" title="Class of command for adding object to given document. " alt="" coords="5,176,139,312"/>
+<area shape="rect" id="node3" href="$classChangeAttribCommand.html" title="Class of command for editing object in given document. " alt="" coords="163,176,349,312"/>
+<area shape="rect" id="node4" href="$classRemoveCommand.html" title="Class of command for removing object in given document. " alt="" coords="374,176,532,312"/>
+<area shape="rect" id="node5" href="$classSelectCommand.html" title="Class of command for selecting object in document. " alt="" coords="557,176,704,312"/>
+</map>

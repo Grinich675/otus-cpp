@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ip_20printer',['IP printer',['../index.html',1,'']]]
+  ['vegraf',['VeGraf',['../index.html',1,'']]]
 ];

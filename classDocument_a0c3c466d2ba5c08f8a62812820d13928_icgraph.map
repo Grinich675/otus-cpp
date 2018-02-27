@@ -1,0 +1,10 @@
+<map id="Document::Draw" name="Document::Draw">
+<area shape="rect" id="node2" href="$classVeGrafController.html#abac8304117c5d86887a85e91544e5c05" title="Constructs controller. " alt="" coords="179,5,347,46"/>
+<area shape="rect" id="node3" href="$classVeGrafController.html#a6d7d54b66444f70d9dde2d791a1417a1" title="Bounds Controller with another serialized document. " alt="" coords="183,71,342,97"/>
+<area shape="rect" id="node4" href="$classVeGrafController.html#a88c85130e52e64e6938d2ced0c3a634c" title="Function for clearing bounded document and its history. " alt="" coords="183,121,342,148"/>
+<area shape="rect" id="node5" href="$classVeGrafController.html#ac48378813516c55e0381f1a07af7d63d" title="Function for redrawing working plane. " alt="" coords="183,172,342,199"/>
+<area shape="rect" id="node6" href="$classVeGrafController.html#a487e81eba8f7db4ec4d0c59e1ed1b876" title="Function for adding object to bounded document. " alt="" coords="187,223,338,249"/>
+<area shape="rect" id="node7" href="$classVeGrafController.html#a8eb10d3c31d93e8553c15733913fd2ab" title="Function for removing object from bounded document by its coordinates. " alt="" coords="180,273,345,300"/>
+<area shape="rect" id="node8" href="$classVeGrafController.html#a9f048afd98330c11e5ee933fc00a8ffc" title="Function for editing given object in bounded document. " alt="" coords="177,324,349,351"/>
+<area shape="rect" id="node9" href="$classVeGrafController.html#a4d7d7ec813bdffbc97223acbf9783787" title="Function for reverting last applied transformation to bounded document. " alt="" coords="183,375,342,401"/>
+</map>

@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structmeta__ip__printers_1_1container__helper_3_01T_00_01false_01_4_1_1type__helper.html" title="Structure declaration used for routing to print_ip function. " alt="" coords="5,4,184,60"/>
+<area shape="rect" id="node1" href="$classVObject.html" title="Base class of all vector graphic primitives. " alt="" coords="5,132,75,159"/>
+<area shape="rect" id="node2" href="$classBezier.html" title="Class defines Bézier curve primitive. " alt="" coords="144,5,203,32"/>
+<area shape="rect" id="node3" href="$classEllipse.html" title="Class defines Ellipse primitive. " alt="" coords="143,56,204,83"/>
+<area shape="rect" id="node5" href="$classHexagon.html" title="Class defines Hexagon primitive. " alt="" coords="136,107,211,133"/>
+<area shape="rect" id="node6" href="$classParallelogram.html" title="Class defines Parallelogram primitive. " alt="" coords="123,157,224,184"/>
+<area shape="rect" id="node10" href="$classText.html" title="Class defines Text primitive. " alt="" coords="149,208,197,235"/>
+<area shape="rect" id="node11" href="$classTriangle.html" title="Class defines Triangle primitive. " alt="" coords="139,259,207,285"/>
+<area shape="rect" id="node4" href="$classCircle.html" title="Class defines Circle primitive. " alt="" coords="285,56,341,83"/>
+<area shape="rect" id="node7" href="$classRectangle.html" title="Class defines Rectangle primitive. " alt="" coords="273,107,354,133"/>
+<area shape="rect" id="node8" href="$classRhombus.html" title="Class defines Rhombus primitive. " alt="" coords="274,157,353,184"/>
+<area shape="rect" id="node9" href="$classSquare.html" title="Class defines Square primitive. " alt="" coords="282,208,345,235"/>
 </map>

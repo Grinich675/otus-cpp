@@ -1,0 +1,6 @@
+<map id="Parallelogram" name="Parallelogram">
+<area shape="rect" id="node3" href="$classRectangle.html" title="Class defines Rectangle primitive. " alt="" coords="5,507,107,658"/>
+<area shape="rect" id="node4" href="$classRhombus.html" title="Class defines Rhombus primitive. " alt="" coords="131,507,229,658"/>
+<area shape="rect" id="node5" href="$classSquare.html" title="Class defines Square primitive. " alt="" coords="254,507,348,658"/>
+<area shape="rect" id="node2" href="$classVObject.html" title="Base class of all vector graphic primitives. " alt="" coords="131,6,228,215"/>
+</map>

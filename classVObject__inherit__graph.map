@@ -1,0 +1,12 @@
+<map id="VObject" name="VObject">
+<area shape="rect" id="node2" href="$classBezier.html" title="Class defines Bézier curve primitive. " alt="" coords="5,286,120,437"/>
+<area shape="rect" id="node3" href="$classEllipse.html" title="Class defines Ellipse primitive. " alt="" coords="145,271,263,451"/>
+<area shape="rect" id="node5" href="$classHexagon.html" title="Class defines Hexagon primitive. " alt="" coords="287,279,395,444"/>
+<area shape="rect" id="node6" href="$classParallelogram.html" title="Class defines Parallelogram primitive. " alt="" coords="419,264,540,459"/>
+<area shape="rect" id="node10" href="$classText.html" title="Class defines Text primitive. " alt="" coords="565,279,659,444"/>
+<area shape="rect" id="node11" href="$classTriangle.html" title="Class defines Triangle primitive. " alt="" coords="683,271,777,451"/>
+<area shape="rect" id="node4" href="$classCircle.html" title="Class defines Circle primitive. " alt="" coords="157,507,251,672"/>
+<area shape="rect" id="node7" href="$classRectangle.html" title="Class defines Rectangle primitive. " alt="" coords="305,514,407,665"/>
+<area shape="rect" id="node8" href="$classRhombus.html" title="Class defines Rhombus primitive. " alt="" coords="431,514,529,665"/>
+<area shape="rect" id="node9" href="$classSquare.html" title="Class defines Square primitive. " alt="" coords="554,514,648,665"/>
+</map>

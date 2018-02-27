@@ -1,0 +1,7 @@
+<map id="Serializer" name="Serializer">
+<area shape="rect" id="node2" href="$classBinarySerializer.html" title="Class of Binary serialization format. " alt="" coords="5,323,145,605"/>
+<area shape="rect" id="node3" href="$classJsonSerializer.html" title="Class of JSON serialization format. " alt="" coords="171,330,303,598"/>
+<area shape="rect" id="node4" href="$classSVGSerializer.html" title="Class of SVG serialization format. " alt="" coords="327,352,459,576"/>
+<area shape="rect" id="node5" href="$classSWFSerializer.html" title="Class of SWF serialization format. " alt="" coords="483,323,617,605"/>
+<area shape="rect" id="node6" href="$classVMLSerializer.html" title="Class of VML serialization format. " alt="" coords="643,323,772,605"/>
+</map>

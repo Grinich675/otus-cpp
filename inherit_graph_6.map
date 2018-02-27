@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structmeta__ip__printers_1_1container__helper.html" title="Structure declaration used for routing to print_ip function. " alt="" coords="5,5,184,46"/>
+<area shape="rect" id="node1" href="$classSerializer.html" title="Base class of serialization format. " alt="" coords="6,107,82,133"/>
+<area shape="rect" id="node2" href="$classBinarySerializer.html" title="Class of Binary serialization format. " alt="" coords="131,5,245,32"/>
+<area shape="rect" id="node3" href="$classJsonSerializer.html" title="Class of JSON serialization format. " alt="" coords="136,56,240,83"/>
+<area shape="rect" id="node4" href="$classSVGSerializer.html" title="Class of SVG serialization format. " alt="" coords="136,107,240,133"/>
+<area shape="rect" id="node5" href="$classSWFSerializer.html" title="Class of SWF serialization format. " alt="" coords="135,157,241,184"/>
+<area shape="rect" id="node6" href="$classVMLSerializer.html" title="Class of VML serialization format. " alt="" coords="137,208,239,235"/>
 </map>

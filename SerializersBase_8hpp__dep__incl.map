@@ -1,0 +1,14 @@
+<map id="serializers/SerializersBase.hpp" name="serializers/SerializersBase.hpp">
+<area shape="rect" id="node2" href="$Document_8hpp.html" title="Document.hpp" alt="" coords="48,80,155,107"/>
+<area shape="rect" id="node7" href="$Serializers_8hpp.html" title="serializers/Serializers.hpp" alt="" coords="467,155,637,181"/>
+<area shape="rect" id="node8" href="$BinarySerializer_8hpp.html" title="serializers/BinarySerializer.hpp" alt="" coords="230,80,431,107"/>
+<area shape="rect" id="node9" href="$JsonSerializer_8hpp.html" title="serializers/JsonSerializer.hpp" alt="" coords="456,80,648,107"/>
+<area shape="rect" id="node10" href="$SVGSerializer_8hpp.html" title="serializers/SVGSerializer.hpp" alt="" coords="672,80,864,107"/>
+<area shape="rect" id="node11" href="$SWFSerializer_8hpp.html" title="serializers/SWFSerializer.hpp" alt="" coords="888,80,1083,107"/>
+<area shape="rect" id="node12" href="$VMLSerializer_8hpp.html" title="serializers/VMLSerializer.hpp" alt="" coords="1107,80,1297,107"/>
+<area shape="rect" id="node13" href="$VecPrimitives_8cpp.html" title="VecPrimitives.cpp" alt="" coords="1323,80,1451,107"/>
+<area shape="rect" id="node3" href="$BaseCommand_8hpp.html" title="Commands/BaseCommand.hpp" alt="" coords="68,155,276,181"/>
+<area shape="rect" id="node4" href="$CommandHistory_8hpp.html" title="Commands/CommandHistory.hpp" alt="" coords="5,229,224,256"/>
+<area shape="rect" id="node5" href="$Controller_8hpp.html" title="Controller.hpp" alt="" coords="237,304,339,331"/>
+<area shape="rect" id="node6" href="$VeGraf_8cpp.html" title="VeGraf.cpp" alt="" coords="244,379,332,405"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Command::revert" name="Command::revert">
+<area shape="rect" id="node2" href="$classCommandHistory.html#ae966ace2a6044fed81296bae25701567" title="Function for reverting last applied transformation to given document. " alt="" coords="176,5,379,32"/>
+<area shape="rect" id="node3" href="$classVeGrafController.html#a4d7d7ec813bdffbc97223acbf9783787" title="Function for reverting last applied transformation to bounded document. " alt="" coords="427,5,586,32"/>
+</map>

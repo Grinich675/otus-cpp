@@ -1,0 +1,6 @@
+<map id="Bezier" name="Bezier">
+<area shape="rect" id="node2" href="$classVObject.html" title="Base class of all vector graphic primitives. " alt="" coords="209,363,305,557"/>
+<area shape="rect" id="node3" href="$structCoordinates.html" title="Common structure, used for coordinates representation. " alt="" coords="67,206,159,298"/>
+<area shape="rect" id="node4" href="$structAttributes.html" title="Common object attributes. " alt="" coords="204,213,337,291"/>
+<area shape="rect" id="node5" href="$structColor.html" title="Common structure, used for color representation. " alt="" coords="244,6,297,127"/>
+</map>

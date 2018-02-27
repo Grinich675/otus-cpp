@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$structhelpers_1_1is__container.html" title="global helper structure for compile&#45;time checking if type T is STL&#45;compatible container. " alt="" coords="137,5,279,46"/>
+<area shape="rect" id="node1" href="$classCommand.html" title="Base class of transformations. " alt="" coords="5,81,88,108"/>
+<area shape="rect" id="node2" href="$classAddCommand.html" title="Class of command for adding object to given document. " alt="" coords="163,5,269,32"/>
+<area shape="rect" id="node3" href="$classChangeAttribCommand.html" title="Class of command for editing object in given document. " alt="" coords="137,56,295,83"/>
+<area shape="rect" id="node4" href="$classRemoveCommand.html" title="Class of command for removing object in given document. " alt="" coords="151,107,281,133"/>
+<area shape="rect" id="node5" href="$classSelectCommand.html" title="Class of command for selecting object in document. " alt="" coords="157,157,275,184"/>
 </map>

@@ -1,0 +1,7 @@
+<map id="Rectangle" name="Rectangle">
+<area shape="rect" id="node2" href="$classParallelogram.html" title="Class defines Parallelogram primitive. " alt="" coords="43,608,164,803"/>
+<area shape="rect" id="node3" href="$classVObject.html" title="Base class of all vector graphic primitives. " alt="" coords="55,363,152,557"/>
+<area shape="rect" id="node4" href="$structCoordinates.html" title="Common structure, used for coordinates representation. " alt="" coords="5,206,96,298"/>
+<area shape="rect" id="node5" href="$structAttributes.html" title="Common object attributes. " alt="" coords="121,213,255,291"/>
+<area shape="rect" id="node6" href="$structColor.html" title="Common structure, used for color representation. " alt="" coords="161,6,215,127"/>
+</map>
