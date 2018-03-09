@@ -1,7 +1,6 @@
 cmake_minimum_required (VERSION 3.2)
 
-#project (matrix VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
-project (matrix VERSION 0.0.1)
+project (matrix VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
