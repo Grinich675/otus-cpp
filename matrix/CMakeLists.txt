@@ -18,7 +18,7 @@ matrix
  CXX_STANDART 14
  CXX_STANDART_REQUIRED ON
  LINKER_LANGUAGE CXX
- COMPILE_OPTIONS -Wall -Wextra)
+ COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
 
 
 #install Targets
