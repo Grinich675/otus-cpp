@@ -6,23 +6,15 @@ before_script:
 - sudo apt-get install -qq g++-6
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 - sudo apt-get install doxygen graphviz -y
-- cd VeGraf 
+- cd matrix 
 script:
-- cmake src/
+- cmake .
 - cmake --build .
-- cmake --build . --target doc
 - cmake --build . --target package
 deploy:
-- provider: script
+  provider: script
   skip_cleanup: true
   script:
-  - curl -T VeGraf-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/VeGraf/$TRAVIS_BUILD_NUMBER/VeGraf-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
-- provider: pages
-  local-dir: VeGraf/doc_doxygen/html/
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  keep-history: true
-  on:
-    branch: master  
+  - curl -T matrix-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/matrix/$TRAVIS_BUILD_NUMBER/matrix-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 notifications:
   email: false
