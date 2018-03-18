@@ -19,7 +19,10 @@ public:
 	~Controller()
 	{
 		delete processor;
+		if (mode != opMode::DynamicBlock)
+			storage->save(saver);
 		storage->clear();
+		
 
 		delete storage;
 		delete saver;
@@ -73,6 +76,18 @@ public:
 			default:
 				break;
 		}
+	}
+
+	void Stop()
+	{
+		if (mode != opMode::DynamicBlock)
+		{
+			storage->save(saver);
+			//block cnt++;
+		}
+
+		storage->clear();
+		//dump counters
 	}
 
 	void AddLogger(LogInstance* logger)

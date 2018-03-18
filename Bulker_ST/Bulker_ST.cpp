@@ -22,6 +22,8 @@ int main(int argc, char** argv)
 		ctrl.Process(line);
 	}
 
+	ctrl.Stop();
+
 	delete console;
 	delete file;
 
