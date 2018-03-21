@@ -179,7 +179,10 @@ public:
 		_threads_counters.reserve(threads);
 
 		for (int i= 0; i< threads;++i)
+		{
 			processing_threads.emplace_back(&FileLogger::doLog,this,i);
+			_threads_counters.emplace_back();
+		}
 	}
 
 	~FileLogger()
@@ -324,7 +327,10 @@ public:
 		stop_flag=false;
 		_threads_counters.reserve(threads);
 		for (int i= 0; i< threads;++i)
+		{
 			processing_threads.emplace_back(&ConsoleLogger::doLog,this,i);
+			_threads_counters.emplace_back();
+		}
 	}
 
 	~ConsoleLogger()
