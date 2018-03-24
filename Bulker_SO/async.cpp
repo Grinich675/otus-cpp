@@ -1,5 +1,7 @@
 #include "async.h"
 #include "Connection.hpp"
+#include <thread>
+#include <mutex>
 namespace async {
 
 std::once_flag loggers_flag;
