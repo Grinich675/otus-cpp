@@ -12,10 +12,8 @@ int main(int argc, char** argv)
 
 	Controller ctrl(block_size);
 
-	auto console = new ConsoleLogger();
-	auto file = new FileLogger();
-	ctrl.AddLogger(console);
-	ctrl.AddLogger(file);
+	ctrl.AddLogger(std::make_shared<ConsoleLogger>());
+	ctrl.AddLogger(std::make_shared<FileLogger>());
 
 	for(std::string line; std::getline(std::cin, line);)
 	{
@@ -24,8 +22,6 @@ int main(int argc, char** argv)
 
 	ctrl.Stop();
 
-	delete console;
-	delete file;
 
 	return 0;
 }

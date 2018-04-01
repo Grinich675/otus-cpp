@@ -2,6 +2,7 @@
 #include <chrono>
 #include <list>
 #include <string>
+#include <memory>
 
 /**
  \brief Representation of ready for output command batch
@@ -10,7 +11,7 @@ struct Transaction
 {
 	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
 	ts_t start_timestamp;
-	std::list<std::string>* commands;
+	std::unique_ptr< std::list<std::string>> commands;
 };
 
 /**

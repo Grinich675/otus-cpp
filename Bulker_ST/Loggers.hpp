@@ -91,9 +91,9 @@ public:
 */
 class Saver
 {
-	std::vector<LogInstance*> loggers;
+	std::vector<std::shared_ptr<LogInstance>> loggers;
 public:
-	void AddLogger(LogInstance *logger)
+	void AddLogger(std::shared_ptr<LogInstance> logger)
 	{
 		loggers.push_back(logger);
 	}

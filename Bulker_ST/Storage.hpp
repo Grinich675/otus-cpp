@@ -8,7 +8,9 @@
 class CommandStorage
 {
 	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
-	std::list<std::string> Storage;
+	using storage_t = std::list<std::string>;
+
+	std::unique_ptr<storage_t> Storage;
 	ts_t fist_cmd_time;
 public:
 
@@ -21,20 +23,29 @@ public:
 
 	 void add(std::string& cmd)
 	 {
-		 if(Storage.size()==0)
+
+		 if(!Storage)
+		 {
+			 Storage.reset( new std::list<std::string>());
+		 }
+
+		 if(Storage->size()==0)
 		 {
 			 fist_cmd_time= std::chrono::system_clock::now();
 		 }
-		 Storage.push_back(cmd);
+		 Storage->push_back(cmd);
 	 }
 
 	 void save (Saver* _saver)
 	 {
-		 if(Storage.size()>0)
+		 if(!Storage || _saver==nullptr)
+			 return;
+
+		 if(Storage->size()>0)
 		 {
 			 auto trans = Transaction {
 	 	 	 	 	 .start_timestamp = fist_cmd_time,
-		 	 	 	 .commands= &Storage
+	 	 	 	 	 .commands= std::move(Storage),
 			 	 	 };
 			 _saver->Log(trans );
 		 }
@@ -42,6 +53,7 @@ public:
 
 	 void clear()
 	 {
-		 Storage.clear();
+		 if(Storage)
+			 Storage->clear();
 	 }
 };

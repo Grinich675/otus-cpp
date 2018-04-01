@@ -11,37 +11,39 @@ class Controller
 {
 	int block_size;
 	opMode mode;
-	CommandProcessor* processor;
+	std::unique_ptr<CommandProcessor> processor;
 
-	CommandStorage* storage;
-	Saver * saver;
+	std::unique_ptr<CommandStorage> storage;
+	std::unique_ptr<Saver> saver;
 public:
 	~Controller()
 	{
-		delete processor;
+		/*delete processor;
 		if (mode != opMode::DynamicBlock)
 			storage->save(saver);
 		storage->clear();
 		
 
 		delete storage;
-		delete saver;
+		delete saver;*/
 	}
 
 
-	Controller():block_size(15),mode(opMode::DynamicBlock)
+	Controller():
+		block_size(15),mode(opMode::DynamicBlock),
+		processor(new DynamicProcessor()),
+		storage(new CommandStorage()),
+		saver (new Saver())
 	{
-		processor = new DynamicProcessor();
-		storage = new CommandStorage();
-		saver = new Saver();
 	}
 
 
-	Controller(int _block_size):block_size(_block_size),mode(opMode::StaticBlock)
+	Controller(int _block_size):
+		block_size(_block_size),mode(opMode::StaticBlock),
+		processor(new StaticProcessor(_block_size)),
+		storage(new CommandStorage()),
+		saver(new Saver())
 	{
-		processor = new StaticProcessor(_block_size);
-		storage = new CommandStorage();
-		saver = new Saver();
 	}
 
 	void Process(std::string& _cmd)
@@ -54,22 +56,21 @@ public:
 				break;
 			case Action::ADDnFlush:
 				storage->add(_cmd);
-				storage->save(saver);
+				storage->save(saver.get());
 				storage->clear();
 				break;
 			case Action::ChangeMode:
-				storage->save(saver);
+				storage->save(saver.get());
 				storage->clear();
-				delete processor;
 
 				if(mode == opMode::StaticBlock)
 					{
-						processor = new DynamicProcessor();
+						processor.reset( new DynamicProcessor());
 						mode =opMode::DynamicBlock;
 					}
 				else
 					{
-						processor = new StaticProcessor(block_size);
+						processor.reset( new StaticProcessor(block_size));
 						mode= opMode::StaticBlock;
 					}
 				break;
@@ -82,7 +83,7 @@ public:
 	{
 		if (mode != opMode::DynamicBlock)
 		{
-			storage->save(saver);
+			storage->save(saver.get());
 			//block cnt++;
 		}
 
@@ -90,7 +91,7 @@ public:
 		//dump counters
 	}
 
-	void AddLogger(LogInstance* logger)
+	void AddLogger(std::shared_ptr<LogInstance> logger)
 	{
 		saver->AddLogger( logger);
 	}
