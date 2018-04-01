@@ -390,11 +390,11 @@ public:
 */
 class Saver
 {
-	std::vector< LogInstance* > loggers;
+	std::vector< std::shared_ptr<LogInstance> > loggers;
 public:
-	void AddLogger(LogInstance* logger)
+	void AddLogger(std::shared_ptr<LogInstance> logger)
 	{
-		if(logger!= nullptr)
+		if(logger)
 			loggers.push_back(logger);
 	}
 
@@ -405,7 +405,7 @@ public:
 
 	void Log(std::shared_ptr<Transaction> trans)
 	{
-		for (auto& logger : loggers)
+		for (auto logger : loggers)
 		{
 			logger->log(trans);
 		}

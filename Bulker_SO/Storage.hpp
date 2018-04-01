@@ -8,45 +8,48 @@
 class CommandStorage
 {
 	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
-	std::list<std::string>* Storage;
+	using storage_t = std::list<std::string>;
+
+	std::unique_ptr<storage_t> Storage;
 	ts_t fist_cmd_time;
 public:
 
-	ts_t GetTimestamp()
-	{
-		return fist_cmd_time;
-	}
-
 	~CommandStorage()
 	{
-		if(Storage!=nullptr)
-		{
-			delete Storage;
-		}
 	}
 
 	CommandStorage():Storage(new std::list<std::string>() ){}
 
 	 void add(std::string& cmd)
 	 {
+		 if(!Storage)
+		 {
+			 Storage.reset( new std::list<std::string>());
+		 }
+
 		 if(Storage->size()==0)
 		 {
 			 fist_cmd_time= std::chrono::system_clock::now();
 		 }
+
 		 Storage->push_back(cmd);
 	 }
 
 	 bool save (Saver* _saver,std::string ep)
 	 {
+		 if(!Storage|| _saver==nullptr)
+			 return false;
+
+
 		 if(Storage->size()>0)
 		 {
 
 			 std::shared_ptr<Transaction> trans (new Transaction {
  	 	 	 	 .start_timestamp = fist_cmd_time,
-	 	 	 	 .commands= Storage,
+	 	 	 	 .commands= std::move(Storage),
 				 .endpoint = ep
 		 	 	 });
-			 Storage=nullptr;
+
 			 _saver->Log(trans );
 			 return true;
 		 }
@@ -55,12 +58,12 @@ public:
 
 	 void clear()
 	 {
-		 if(Storage!= nullptr)
+		 if(Storage)
 			 Storage->clear();
 	 }
 
 	 void reInit()
 	 {
-		 Storage = new std::list<std::string>();
+		 Storage.reset( new std::list<std::string>());
 	 }
 };

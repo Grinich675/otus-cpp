@@ -19,8 +19,8 @@ handle_t connect(std::size_t bulk)
 	std::call_once(loggers_flag,InitLog);
 
 	auto _conn = new connection::Connection(bulk);
-	_conn->AddLogger(console.get());
-	_conn->AddLogger(flog.get());
+	_conn->AddLogger(console);
+	_conn->AddLogger(flog);
 
     return _conn;
 }

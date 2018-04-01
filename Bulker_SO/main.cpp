@@ -10,6 +10,7 @@ int main(int, char *[]) {
     async::receive(h2, "1\n", 2);
     async::receive(h, "\n2\n3\n4\n5\n6\n{\na\n", 15);
     async::receive(h, "b\nc\nd\n}\n89\n", 11);
+    async::receive(h2,"2\n3\n",4);
     async::disconnect(h);
     async::disconnect(h2);
 

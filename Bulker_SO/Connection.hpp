@@ -58,7 +58,7 @@ class Connection
 
 public:
 
-	void AddLogger(LogInstance* logger)
+	void AddLogger(std::shared_ptr<LogInstance> logger)
 	{
 
 		std::lock_guard<std::mutex> lk (mut);

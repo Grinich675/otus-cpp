@@ -2,6 +2,7 @@
 #include <chrono>
 #include <list>
 #include <string>
+#include <memory>
 
 #include <iostream>
 /**
@@ -11,13 +12,8 @@ struct Transaction
 {
 	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
 	ts_t start_timestamp;
-	std::list<std::string>* commands;
+	std::unique_ptr< std::list<std::string>> commands;
 	std::string endpoint;
-
-	~Transaction()
-	{
-		delete commands;
-	}
 };
 
 /**
@@ -36,6 +32,6 @@ enum class Action
 */
 enum class opMode
 {
-	StaticBlock, //Transaction completes by s
+	StaticBlock, //Transaction completes by size
 	DynamicBlock //Transaction completes by escape-sequence
 };
