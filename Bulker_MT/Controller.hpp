@@ -11,10 +11,10 @@ class Controller
 {
 	int block_size;
 	opMode mode;
-	CommandProcessor* processor;
+	std::unique_ptr<CommandProcessor> processor;
 
-	CommandStorage* storage;
-	Saver * saver;
+	std::unique_ptr<CommandStorage> storage;
+	std::unique_ptr<Saver> saver;
 
 	struct Counters
 	{
@@ -37,27 +37,30 @@ class Controller
 public:
 	~Controller()
 	{
-		delete processor;
+	/*	delete processor;
 		storage->clear();
 
 		delete storage;
-		delete saver;
+		delete saver;*/
 	}
 
 
-	Controller():block_size(15),mode(opMode::DynamicBlock)
+	Controller():
+		block_size(15),mode(opMode::DynamicBlock),
+		processor(new DynamicProcessor()),
+		storage(new CommandStorage()),
+		saver (new Saver())
 	{
-		processor = new DynamicProcessor();
-		storage = new CommandStorage();
-		saver = new Saver();
 	}
 
 
-	Controller(int _block_size):block_size(_block_size),mode(opMode::StaticBlock)
+	Controller(int _block_size):
+		block_size(_block_size),mode(opMode::StaticBlock),
+		processor(new StaticProcessor(_block_size)),
+		storage(new CommandStorage()),
+		saver (new Saver())
+
 	{
-		processor = new StaticProcessor(_block_size);
-		storage = new CommandStorage();
-		saver = new Saver();
 	}
 
 	void Process(std::string& _cmd)
@@ -75,26 +78,24 @@ public:
 				storage->add(_cmd);
 				cnt.commands++;
 
-				if(storage->save(saver))
+				if(storage->save(saver.get()))
 					cnt.blocks++;
-
 				storage->reInit();
 				break;
 			case Action::ChangeMode:
 
-				if(storage->save(saver))
+				if(storage->save(saver.get()))
 					cnt.blocks++;
 				storage->reInit();
-				delete processor;
 
 				if(mode == opMode::StaticBlock)
 				{
-					processor = new DynamicProcessor();
+					processor.reset( new DynamicProcessor());
 					mode =opMode::DynamicBlock;
 				}
 				else
 				{
-					processor = new StaticProcessor(block_size);
+					processor.reset( new StaticProcessor(block_size));
 					mode= opMode::StaticBlock;
 				}
 				break;
@@ -107,7 +108,7 @@ public:
 	{
 		if (mode != opMode::DynamicBlock)
 		{
-			if(storage->save(saver))
+			if(storage->save(saver.get()))
 				cnt.blocks++;
 		}
 
