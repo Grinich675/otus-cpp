@@ -10,7 +10,7 @@ before_script:
 - cd boost_1_66_0
 - ./bootstrap.sh
 #- sudo ./b2 install
-- sudo ./b2 --with-system --with-thread --with-date_time --with-regex --with-serialization stage
+- sudo ./b2 --with-system --with-thread --with-date_time --with-regex --with-serialization -j8 install
 - cd ../Bulk_Server 
 script:
 - cmake . -DCMAKE_BUILD_TYPE=RELEASE
