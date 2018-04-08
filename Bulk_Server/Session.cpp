@@ -1,11 +1,5 @@
 #include "Session.hpp"
 
-#include <boost/asio/basic_socket.hpp>
-#include <boost/asio/basic_stream_socket.hpp>
-#include <boost/asio/buffer.hpp>
-#include <boost/asio/error.hpp>
-#include <boost/asio/ip/address.hpp>
-#include <boost/asio/ip/basic_endpoint.hpp>
 #include <boost/system/error_code.hpp>
 #include <algorithm>
 #include <string>

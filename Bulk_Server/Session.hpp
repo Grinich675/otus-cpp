@@ -1,6 +1,6 @@
 #pragma once
 
-#include <boost/asio/ip/tcp.hpp>
+#include <boost/asio.hpp>
 #include <cstddef>
 #include <memory>
 
