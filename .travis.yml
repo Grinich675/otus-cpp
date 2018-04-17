@@ -27,8 +27,8 @@ deploy:
   skip_cleanup: true
   script:
   - curl -T bulk_server-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/bulk_server/$TRAVIS_BUILD_NUMBER/bulk_server_old_boost-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
-on:
-    all_branches: true
+  on:
+      branch: dev_bulk_server_old_boost
 notifications:
   email: false
 
