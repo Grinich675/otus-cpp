@@ -28,7 +28,7 @@ private:
   void do_await_stop();
 
 
-  boost::asio::io_context io_context_;
+  boost::asio::io_service io_context_;
 
   boost::asio::signal_set signals_;
 
