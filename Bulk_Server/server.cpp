@@ -11,7 +11,7 @@ server::~server()
 
 server::server(int port,std::size_t bulk_size):
 io_context_(1),
-socket_(io_service_),
+socket_(io_context_),
 signals_(io_context_),
 acceptor_(io_context_, tcp::endpoint(tcp::v4(), port)),
 sess_manager_()
