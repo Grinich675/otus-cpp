@@ -30,6 +30,9 @@ private:
 
   boost::asio::io_service io_context_;
 
+  /// The next socket to be accepted.
+  boost::asio::ip::tcp::socket socket_;
+
   boost::asio::signal_set signals_;
 
   boost::asio::ip::tcp::acceptor acceptor_;

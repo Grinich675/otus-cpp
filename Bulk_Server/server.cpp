@@ -11,6 +11,7 @@ server::~server()
 
 server::server(int port,std::size_t bulk_size):
 io_context_(1),
+socket_(io_service_),
 signals_(io_context_),
 acceptor_(io_context_, tcp::endpoint(tcp::v4(), port)),
 sess_manager_()
@@ -27,8 +28,8 @@ sess_manager_()
 	acceptor_.set_option(boost::asio::socket_base::receive_buffer_size(8*1024*1024));
 	acceptor_.set_option(boost::asio::socket_base::keep_alive(true));
 
-	if(boost::asio::socket_base::max_listen_connections < 1024)
-		std::cerr<<"Warning! Low max listen connections: "<<boost::asio::socket_base::max_listen_connections<<std::endl;
+	/*if(boost::asio::socket_base::max_listen_connections < 1024)
+		std::cerr<<"Warning! Low max listen connections: "<<boost::asio::socket_base::max_listen_connections<<std::endl;*/
 
 	do_accept(bulk_size);
 }
@@ -40,8 +41,8 @@ void server::run()
 
 void server::do_accept(std::size_t bulk_size)
 {
-	acceptor_.async_accept(
-			[this,bulk_size](boost::system::error_code ec, boost::asio::ip::tcp::socket socket)
+	acceptor_.async_accept(socket_,
+			[this,bulk_size](boost::system::error_code ec)
 			{
 		if (!acceptor_.is_open())
 		{
@@ -51,7 +52,7 @@ void server::do_accept(std::size_t bulk_size)
 		if (!ec)
 		{
 			sess_manager_.start(std::make_shared<session>(
-					sess_manager_,std::move(socket),bulk_size));
+					sess_manager_,std::move(socket_,),bulk_size));
 		}
 
 		do_accept(bulk_size);
