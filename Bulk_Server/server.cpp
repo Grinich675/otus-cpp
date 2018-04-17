@@ -52,7 +52,7 @@ void server::do_accept(std::size_t bulk_size)
 		if (!ec)
 		{
 			sess_manager_.start(std::make_shared<session>(
-					sess_manager_,std::move(socket_,),bulk_size));
+					sess_manager_,std::move(socket_),bulk_size));
 		}
 
 		do_accept(bulk_size);
