@@ -106,7 +106,7 @@ SharedStorage::SharedStorage(std::size_t _bulk_size,std::shared_ptr<Saver> _save
 			last_cmd_time(std::chrono::system_clock::now()),
 			mut(),
 			io_context_(1),
-			timer(io_context_, boost::asio::chrono::seconds(2))
+			timer(io_context_, std::chrono::seconds(2))
 
 {
 	timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
@@ -125,7 +125,7 @@ void SharedStorage::timer_func(const boost::system::error_code& e)
 			DumpStorage();
 		}
 
-		 timer.expires_at(timer.expiry() + boost::asio::chrono::seconds(2));
+		 timer.expires_at(timer.expiry() + std::chrono::seconds(2));
 		 timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
 	}
 
