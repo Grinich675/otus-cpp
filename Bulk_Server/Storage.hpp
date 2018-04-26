@@ -3,6 +3,8 @@
 #include "Loggers.hpp"
 #include <map>
 
+#include "boost/asio.hpp"
+
 namespace bulk {
 namespace server {
 namespace internals{
@@ -45,7 +47,7 @@ public:
 	 void clear()override;
 
 private:
-	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
+	using ts_t = std::chrono::time_point<std::chrono::steady_clock>;
 	using storage_t = std::list<std::string>;
 
 	std::unique_ptr<storage_t> Storage;
@@ -72,15 +74,22 @@ public:
 
 	void clear()override;
 private:
-	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
+	using ts_t = std::chrono::time_point<std::chrono::steady_clock>;
 	using storage_t = std::list<std::string>;
 
 	std::unique_ptr<storage_t> Storage;
 	std::size_t bulk_size;
 	ts_t fist_cmd_time;
-	std::mutex mut;
+	ts_t last_cmd_time;
+	mutable std::mutex mut;
+
+	boost::asio::io_service io_context_;
+	boost::asio::steady_timer timer;
+	std::thread timer_thr;
+
 
 	void DumpStorage();
+	void timer_func(const boost::system::error_code& /*e*/);
 };
 }
 

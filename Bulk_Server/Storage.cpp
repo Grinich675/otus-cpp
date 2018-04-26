@@ -24,7 +24,7 @@ void LocalStorage::add(std::string& cmd)
 
 	if(Storage->size()==0)
 	{
-		fist_cmd_time= std::chrono::system_clock::now();
+		fist_cmd_time= std::chrono::steady_clock::now();
 	}
 
 	Storage->push_back(cmd);
@@ -72,6 +72,9 @@ void SharedStorage::DumpStorage()
 		return;
 	}
 
+	if(Storage->size()==0)
+		return;
+
 	std::shared_ptr<Transaction> trans (new Transaction {
 		.start_timestamp = fist_cmd_time,
 				.commands= std::move(Storage)
@@ -83,6 +86,9 @@ void SharedStorage::DumpStorage()
 
 SharedStorage::~SharedStorage()
 {
+	timer.cancel();
+	if(timer_thr.joinable())
+		timer_thr.join();
 	DumpStorage();
 }
 
@@ -95,8 +101,35 @@ SharedStorage::SharedStorage(std::size_t _bulk_size):
 SharedStorage::SharedStorage(std::size_t _bulk_size,std::shared_ptr<Saver> _saver):
 			CommandStorage(_saver),
 			Storage(new std::list<std::string>() ),
-			bulk_size(_bulk_size)
-{}
+			bulk_size(_bulk_size),
+			fist_cmd_time(std::chrono::steady_clock::now()),
+			last_cmd_time(std::chrono::steady_clock::now()),
+			mut(),
+			io_context_(1),
+			timer(io_context_, std::chrono::seconds(2))
+
+{
+	timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
+	timer_thr = std::thread([this](){io_context_.run();});
+
+}
+
+
+void SharedStorage::timer_func(const boost::system::error_code& e)
+{
+	if(!e /*!= boost::asio::error::operation_aborted*/)
+	{
+		std::lock_guard<std::mutex> lk{mut};
+		if(last_cmd_time < (std::chrono::steady_clock::now() - std::chrono::seconds(2) ) )
+		{
+			DumpStorage();
+		}
+
+		 timer.expires_at(timer.expiry() + std::chrono::seconds(2));
+		 timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
+	}
+
+}
 
 void SharedStorage::add(std::string& cmd)
 {
@@ -109,10 +142,11 @@ void SharedStorage::add(std::string& cmd)
 
 	if(Storage->size()==0)
 	{
-		fist_cmd_time= std::chrono::system_clock::now();
+		fist_cmd_time= std::chrono::steady_clock::now();
 	}
 
 	Storage->push_back(cmd);
+	last_cmd_time = std::chrono::steady_clock::now();
 
 	if(Storage->size()==bulk_size)
 		DumpStorage();
@@ -130,7 +164,7 @@ void SharedStorage::clear()
 //}
 }
 
-//{ Region ConsoleLogger.
+//{ Region GlobalStorage.
 GlobalStorage::storage_t& GlobalStorage::GetInstance()
 {
 	static storage_t instance;
