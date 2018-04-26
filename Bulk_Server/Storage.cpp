@@ -24,7 +24,7 @@ void LocalStorage::add(std::string& cmd)
 
 	if(Storage->size()==0)
 	{
-		fist_cmd_time= std::chrono::system_clock::now();
+		fist_cmd_time= std::chrono::steady_clock::now();
 	}
 
 	Storage->push_back(cmd);
@@ -102,11 +102,11 @@ SharedStorage::SharedStorage(std::size_t _bulk_size,std::shared_ptr<Saver> _save
 			CommandStorage(_saver),
 			Storage(new std::list<std::string>() ),
 			bulk_size(_bulk_size),
-			fist_cmd_time(std::chrono::system_clock::now()),
-			last_cmd_time(std::chrono::system_clock::now()),
+			fist_cmd_time(std::chrono::steady_clock::now()),
+			last_cmd_time(std::chrono::steady_clock::now()),
 			mut(),
 			io_context_(1),
-			timer(io_context_, boost::asio::chrono::seconds(2))
+			timer(io_context_, std::chrono::seconds(2))
 
 {
 	timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
@@ -120,12 +120,12 @@ void SharedStorage::timer_func(const boost::system::error_code& e)
 	if(!e /*!= boost::asio::error::operation_aborted*/)
 	{
 		std::lock_guard<std::mutex> lk{mut};
-		if(last_cmd_time < (std::chrono::system_clock::now() - std::chrono::seconds(2) ) )
+		if(last_cmd_time < (std::chrono::steady_clock::now() - std::chrono::seconds(2) ) )
 		{
 			DumpStorage();
 		}
 
-		 timer.expires_at(timer.expiry() + boost::asio::chrono::seconds(2));
+		 timer.expires_at(timer.expiry() + std::chrono::seconds(2));
 		 timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
 	}
 
@@ -142,11 +142,11 @@ void SharedStorage::add(std::string& cmd)
 
 	if(Storage->size()==0)
 	{
-		fist_cmd_time= std::chrono::system_clock::now();
+		fist_cmd_time= std::chrono::steady_clock::now();
 	}
 
 	Storage->push_back(cmd);
-	last_cmd_time = std::chrono::system_clock::now();
+	last_cmd_time = std::chrono::steady_clock::now();
 
 	if(Storage->size()==bulk_size)
 		DumpStorage();

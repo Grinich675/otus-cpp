@@ -10,7 +10,7 @@
 */
 struct Transaction
 {
-	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
+	using ts_t = std::chrono::time_point<std::chrono::steady_clock>;
 	ts_t start_timestamp;
 	std::unique_ptr< std::list<std::string>> commands;
 };

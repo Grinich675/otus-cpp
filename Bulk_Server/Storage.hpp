@@ -47,7 +47,7 @@ public:
 	 void clear()override;
 
 private:
-	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
+	using ts_t = std::chrono::time_point<std::chrono::steady_clock>;
 	using storage_t = std::list<std::string>;
 
 	std::unique_ptr<storage_t> Storage;
@@ -74,7 +74,7 @@ public:
 
 	void clear()override;
 private:
-	using ts_t = std::chrono::time_point<std::chrono::system_clock>;
+	using ts_t = std::chrono::time_point<std::chrono::steady_clock>;
 	using storage_t = std::list<std::string>;
 
 	std::unique_ptr<storage_t> Storage;
