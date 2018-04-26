@@ -125,7 +125,7 @@ void SharedStorage::timer_func(const boost::system::error_code& e)
 			DumpStorage();
 		}
 
-		 timer.expires_at(timer.expiry() + std::chrono::seconds(2));
+		 timer.expires_from_now(std::chrono::seconds(2));
 		 timer.async_wait([this](const boost::system::error_code& e){timer_func(e);});
 	}
 
