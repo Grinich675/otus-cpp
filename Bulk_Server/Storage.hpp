@@ -84,7 +84,7 @@ private:
 	mutable std::mutex mut;
 
 	boost::asio::io_service io_context_;
-	boost::asio::deadline_timer timer;
+	boost::asio::steady_timer timer;
 	std::thread timer_thr;
 
 
