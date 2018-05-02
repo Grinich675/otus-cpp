@@ -48,7 +48,7 @@ void Server::run()
 
 void Server::do_accept()
 {
-	acceptor_.async_accept(
+	acceptor_.async_accept(socket_,
 	[this](boost::system::error_code ec, boost::asio::ip::tcp::socket socket)
 	{
 		if (!acceptor_.is_open())

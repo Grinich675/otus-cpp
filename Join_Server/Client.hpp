@@ -19,7 +19,7 @@ public:
 	client(const client&) = delete;
 	client& operator=(const client&) = delete;
 
-	client(boost::asio::io_context& io_context,client_manager& manager,tcp::socket soc);
+	client(boost::asio::io_service& io_context,client_manager& manager,tcp::socket soc);
 
 	void start();
 

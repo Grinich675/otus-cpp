@@ -25,11 +25,14 @@ private:
 
   std::size_t thread_pool_size_;
 
-  boost::asio::io_context io_context_;
+  boost::asio::io_service io_context_;
 
   boost::asio::signal_set signals_;
 
   boost::asio::ip::tcp::acceptor acceptor_;
 
   client_manager client_manager_;
+
+  /// The next socket to be accepted.
+  boost::asio::ip::tcp::socket socket_;
 };

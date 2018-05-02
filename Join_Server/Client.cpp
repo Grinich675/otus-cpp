@@ -16,7 +16,7 @@
 
 
 
-client::client(boost::asio::io_context& io_context,client_manager& manager,tcp::socket soc)
+client::client(boost::asio::io_service& io_context,client_manager& manager,tcp::socket soc)
 : client_manager_(manager),
   socket_(std::move(soc)),
   strand_(io_context),
