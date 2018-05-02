@@ -8,7 +8,7 @@
 
 Server::Server(int port,std::size_t thread_pool_size):
 thread_pool_size_(thread_pool_size),
-io_context_(BOOST_ASIO_CONCURRENCY_HINT_SAFE),
+io_context_(),
 signals_(io_context_),
 acceptor_(io_context_, tcp::endpoint(tcp::v4(), port)),
 client_manager_()
@@ -24,9 +24,6 @@ client_manager_()
 	//set rcv buffer 8 mb
 	acceptor_.set_option(boost::asio::socket_base::receive_buffer_size(8*1024*1024));
 	acceptor_.set_option(boost::asio::socket_base::keep_alive(true));
-
-	if(boost::asio::socket_base::max_listen_connections < 1024)
-		std::cerr<<"Warning! Low max listen connections: "<<boost::asio::socket_base::max_listen_connections<<std::endl;
 
 	do_accept();
 }
@@ -49,7 +46,7 @@ void Server::run()
 void Server::do_accept()
 {
 	acceptor_.async_accept(socket_,
-	[this](boost::system::error_code ec, boost::asio::ip::tcp::socket socket)
+	[this](boost::system::error_code ec)
 	{
 		if (!acceptor_.is_open())
 		{
@@ -59,7 +56,7 @@ void Server::do_accept()
 		if (!ec)
 		{
 			client_manager_.start(std::make_shared<client>(
-					io_context_,client_manager_,std::move(socket)));
+					io_context_,client_manager_,std::move(socket_)));
 		}
 
 		do_accept();
