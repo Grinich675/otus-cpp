@@ -35,7 +35,7 @@ private:
 	client_manager& client_manager_;
 
 	tcp::socket socket_;
-	boost::asio::io_context::strand strand_;
+	boost::asio::io_service::strand strand_;
 
 	reqHandler handler;
 
