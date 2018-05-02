@@ -10,14 +10,7 @@ before_script:
 - sudo apt-get update -qq
 - sudo apt-get install -qq g++-6
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-#- wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
-#- tar xf boost_1_66_0.tar.gz
-#- cd boost_1_66_0
-#- ./bootstrap.sh
-#- sudo ./b2 install
-#- sudo ./b2 --with-system --with-thread --with-date_time --with-regex --with-serialization -j8 install
-#- cd ../Bulk_Server
-- cd Bulk_Server
+- cd Join_Server
 script:
 - cmake . -DCMAKE_BUILD_TYPE=RELEASE
 - cmake --build .
@@ -26,9 +19,9 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-  - curl -T bulk_server-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/bulk_server/$TRAVIS_BUILD_NUMBER/bulk_server_old_boost-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  - curl -T join_server-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/join_server/$TRAVIS_BUILD_NUMBER/join_server_old_boost-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
   on:
-      branch: dev_bulk_server_old_boost
+      branch: dev_join_server_old_boost
 notifications:
   email: false
 
