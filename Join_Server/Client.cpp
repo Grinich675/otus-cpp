@@ -74,7 +74,7 @@ void client::do_write()
 {
 	auto self(shared_from_this());
 	socket_.async_write_some(boost::asio::buffer(results.front().data(), results.front().length()),
-			boost::asio::bind_executor(strand_,
+			strand_.wrap(
 			[this, self](boost::system::error_code ec,std::size_t )
 			{
 				if(!ec)
