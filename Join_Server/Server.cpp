@@ -12,7 +12,7 @@ io_context_(),
 signals_(io_context_),
 acceptor_(io_context_, tcp::endpoint(tcp::v4(), port)),
 client_manager_(),
-socket_(io_context_),
+socket_(io_context_)
 {
 	signals_.add(SIGINT);
 	signals_.add(SIGTERM);
