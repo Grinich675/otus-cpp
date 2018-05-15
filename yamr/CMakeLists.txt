@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project (join_server VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project (yamr VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 #project (join_server VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 14)
