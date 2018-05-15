@@ -1,0 +1,24 @@
+sudo: true
+language: cpp
+before_script:
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+- sudo apt-get install -qq g++-6
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+- wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz
+- tar xf boost_1_66_0.tar.gz
+- cd boost_1_66_0
+- ./bootstrap.sh
+- sudo ./b2 --with-system --with-thread --with-date_time --with-regex --with-serialization -j8 install
+- cd ../Join_Server 
+script:
+- cmake . -DCMAKE_BUILD_TYPE=RELEASE
+- cmake --build .
+- cmake --build . --target package
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -T join_server-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uGrinich675:$BINTRAY_API_KEY "https://api.bintray.com/content/grinich675/otus-cpp/join_server/$TRAVIS_BUILD_NUMBER/join_server-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+notifications:
+  email: false
