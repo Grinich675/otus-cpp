@@ -14,26 +14,31 @@ void Mapper<long,std::string,std::size_t,std::string>::Map(long,std::string val,
 	}
 }
 
-template<>
-void Reducer<std::size_t,std::string,std::size_t,bool>::reduce(std::size_t key,std::list<std::string>& vals,reduce_contex<std::size_t,std::string,std::size_t,bool>& ctx)
+
+template <>
+class Reducer<std::size_t,std::string,std::size_t,bool>
 {
-
-	/*std::cout<< key;
-	for(auto& str: vals)
+public:
+	~Reducer()=default;
+	void reduce(std::size_t key, std::list<std::string>& values, reduce_contex<std::size_t,std::string,std::size_t,bool>& context)
 	{
-		std::cout<<" "<<str;
-	}
-	std::cout<<std::endl;*/
+		if(!found)
+		{
+			values.sort();
+				auto repeated= std::adjacent_find(values.begin(),values.end());
 
-	vals.sort();
-	auto repeated= std::adjacent_find(vals.begin(),vals.end());
-
-	if(repeated==vals.end())
-	{
-		//no repeats
-		ctx.write(key,true);
+				if(repeated==values.end())
+				{
+					//no repeats
+					context.write(key,true);
+					found=true;
+				}
+		}
 	}
-}
+private:
+	bool found = false;
+};
+
 
 template <>
 void RecordWriter::write(std::size_t key,bool)
